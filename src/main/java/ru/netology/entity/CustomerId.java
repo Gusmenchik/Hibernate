@@ -1,24 +1,12 @@
 package ru.netology.entity;
 
-import jakarta.persistence.*;
-
 import java.io.Serializable;
+import java.util.Objects;
 
-@Entity
-@Table(name = "customers")
-@IdClass(CustomerId.class)
-public class Customer implements Serializable {
-    @Id
+public class CustomerId implements Serializable {
     private String name;
-
-    @Id
     private String surname;
-
-    @Id
     private int age;
-
-    private String phoneNumber;
-    private String city;
 
     // Getters and Setters
     public String getName() {
@@ -45,22 +33,19 @@ public class Customer implements Serializable {
         this.age = age;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    // Override equals and hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerId that = (CustomerId) o;
+        return age == that.age && Objects.equals(name, that.name) && Objects.equals(surname, that.surname);
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, age);
     }
 }
-
 
 

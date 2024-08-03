@@ -1,9 +1,11 @@
 -- schema.sql
-CREATE TABLE CUSTOMERS (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    surname VARCHAR(50) NOT NULL,
-    age INT NOT NULL,
+CREATE TABLE customers (
+    name VARCHAR(50),
+    surname VARCHAR(50),
+    age INT,
     phone_number VARCHAR(20),
-    city VARCHAR(50)
+    city VARCHAR(50),
+    PRIMARY KEY (name, surname, age)
 );
+
+
